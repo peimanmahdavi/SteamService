@@ -5,7 +5,7 @@ A clean, well-documented PHP wrapper for the Steam Web API built on top of Guzzl
 ## Installation
 
 ```bash
-composer require zedx/steam-service
+composer require pmzedx/steam-service
 ```
 
 ## Getting an API Key
@@ -25,7 +25,7 @@ STEAM_API_KEY=your_key_here
 Then create the client with no arguments:
 
 ```php
-use Zedx\SteamService\SteamClient;
+use PmZedx\SteamService\SteamClient;
 
 $steam = new SteamClient();
 ```
@@ -128,7 +128,7 @@ foreach ($data['appnews']['newsitems'] as $article) {
 All methods throw `SteamApiException` on failure (bad key, rate limit, network error, etc.):
 
 ```php
-use Zedx\SteamService\Exceptions\SteamApiException;
+use PmZedx\SteamService\Exceptions\SteamApiException;
 
 try {
     $data = $steam->users()->getProfiles('76561197960435530');

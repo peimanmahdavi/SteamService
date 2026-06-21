@@ -1,6 +1,6 @@
 <?php
 
-namespace Zedx\SteamService\Exceptions;
+namespace PmZedx\SteamService\Exceptions;
 
 use RuntimeException;
 

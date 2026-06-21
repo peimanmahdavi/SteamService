@@ -1,9 +1,9 @@
 <?php
 
-namespace Zedx\SteamService\Resources;
+namespace PmZedx\SteamService\Resources;
 
-use Zedx\SteamService\Concerns\MakesHttpRequests;
-use Zedx\SteamService\Exceptions\SteamApiException;
+use PmZedx\SteamService\Concerns\MakesHttpRequests;
+use PmZedx\SteamService\Exceptions\SteamApiException;
 
 /**
  * Handles the ISteamNews API interface.

@@ -1,10 +1,10 @@
 <?php
 
-namespace Zedx\SteamService\Concerns;
+namespace PmZedx\SteamService\Concerns;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Zedx\SteamService\Exceptions\SteamApiException;
+use PmZedx\SteamService\Exceptions\SteamApiException;
 
 trait MakesHttpRequests
 {

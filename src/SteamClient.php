@@ -1,12 +1,12 @@
 <?php
 
-namespace Zedx\SteamService;
+namespace PmZedx\SteamService;
 
-use Zedx\SteamService\Exceptions\SteamApiException;
-use Zedx\SteamService\Resources\NewsResource;
-use Zedx\SteamService\Resources\PlayerResource;
-use Zedx\SteamService\Resources\UserResource;
-use Zedx\SteamService\Resources\UserStatsResource;
+use PmZedx\SteamService\Exceptions\SteamApiException;
+use PmZedx\SteamService\Resources\NewsResource;
+use PmZedx\SteamService\Resources\PlayerResource;
+use PmZedx\SteamService\Resources\UserResource;
+use PmZedx\SteamService\Resources\UserStatsResource;
 
 /**
  * SteamClient — the main entry point for the Steam Web API package.

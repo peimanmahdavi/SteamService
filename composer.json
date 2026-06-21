@@ -1,5 +1,5 @@
 {
-    "name": "zedx/steam-service",
+    "name": "pmzedx/steam-service",
     "description": "A clean PHP wrapper for the Steam Web API using Guzzle HTTP.",
     "type": "library",
     "license": "MIT",
@@ -12,7 +12,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Zedx\\SteamService\\": "src/"
+            "PmZedx\\SteamService\\": "src/"
         }
     },
     "authors": [
