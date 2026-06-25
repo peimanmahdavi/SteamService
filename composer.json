@@ -22,13 +22,15 @@
         }
     ],
     "require": {
-        "php": "^8.5",
+        "php": "^8.0",
         "guzzlehttp/guzzle": "^7.0",
-        "guzzlehttp/psr7": "^2.0",
-        "ext-http": "*"
+        "guzzlehttp/psr7": "^2.0"
+    },
+    "suggest": {
+        "ext-http": "Provides optional HTTP client features via PECL extension"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.0"
+        "phpunit/phpunit": "^9.0"
     },
     "minimum-stability": "stable",
     "prefer-stable": true

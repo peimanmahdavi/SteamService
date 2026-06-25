@@ -3,6 +3,8 @@
 namespace PmZedx\SteamService;
 
 use PmZedx\SteamService\Exceptions\SteamApiException;
+use PmZedx\SteamService\Resources\AppResource;
+use PmZedx\SteamService\Resources\EconomyResource;
 use PmZedx\SteamService\Resources\NewsResource;
 use PmZedx\SteamService\Resources\PlayerResource;
 use PmZedx\SteamService\Resources\UserResource;
@@ -113,5 +115,15 @@ class SteamClient
     public function userStats(): UserStatsResource
     {
         return new UserStatsResource($this->apiKey);
+    }
+
+    public function apps(): AppResource
+    {
+        return new AppResource($this->apiKey);
+    }
+
+    public function economy()
+    {
+        return new EconomyResource($this->apiKey);
     }
 }

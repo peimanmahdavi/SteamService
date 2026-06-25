@@ -3,6 +3,7 @@
 namespace PmZedx\SteamService\Resources;
 
 use PmZedx\SteamService\Concerns\MakesHttpRequests;
+use PmZedx\SteamService\Endpoints\SteamEndPoints;
 use PmZedx\SteamService\Exceptions\SteamApiException;
 
 /**
@@ -42,7 +43,7 @@ class PlayerResource
         bool $includeGameDetails = true,
         bool $includeFreeGames = false,
         ?array $filterToAppIds = null
-    ): array {
+    ): object {
         $params = [
             'steamid'                  => $steamId,
             'include_appinfo'          => (int) $includeGameDetails,
@@ -54,7 +55,7 @@ class PlayerResource
             $params['input_json'] = json_encode(['appids_filter' => $filterToAppIds]);
         }
 
-        return $this->get('IPlayerService', 'GetOwnedGames', 1, $params);
+        return $this->get('IPlayerService', 'GetOwnedGames', SteamEndPoints::VERSION_1, $params);
     }
 
     /**
@@ -75,7 +76,7 @@ class PlayerResource
      *       echo $game['name'] . ': ' . $game['playtime_2weeks'] . ' minutes';
      *   }
      */
-    public function getRecentlyPlayedGames(string $steamId, ?int $limit = null): array
+    public function getRecentlyPlayedGames(string $steamId, ?int $limit = null): object
     {
         $params = ['steamid' => $steamId];
 
@@ -83,6 +84,6 @@ class PlayerResource
             $params['count'] = $limit;
         }
 
-        return $this->get('IPlayerService', 'GetRecentlyPlayedGames', 1, $params);
+        return $this->get('IPlayerService', 'GetRecentlyPlayedGames', SteamEndPoints::VERSION_1, $params);
     }
 }

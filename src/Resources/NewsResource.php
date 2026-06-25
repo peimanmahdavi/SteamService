@@ -3,6 +3,7 @@
 namespace PmZedx\SteamService\Resources;
 
 use PmZedx\SteamService\Concerns\MakesHttpRequests;
+use PmZedx\SteamService\Endpoints\SteamEndPoints;
 use PmZedx\SteamService\Exceptions\SteamApiException;
 
 /**
@@ -36,9 +37,9 @@ class NewsResource
      *       echo $article['title'];
      *   }
      */
-    public function getForGame(int $appId, ?int $count = 10, ?int $maxLength = 0): array
+    public function getForGame(int $appId, ?int $count = 10, ?int $maxLength = 0): object
     {
-        return $this->get('ISteamNews', 'GetNewsForApp', 2, [
+        return $this->get('ISteamNews', 'GetNewsForApp', SteamEndPoints::VERSION_2, [
             'appid'     => $appId,
             'count'     => $count,
             'maxlength' => $maxLength,

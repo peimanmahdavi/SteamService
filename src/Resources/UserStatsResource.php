@@ -3,6 +3,7 @@
 namespace PmZedx\SteamService\Resources;
 
 use PmZedx\SteamService\Concerns\MakesHttpRequests;
+use PmZedx\SteamService\Endpoints\SteamEndPoints;
 use PmZedx\SteamService\Exceptions\SteamApiException;
 
 /**
@@ -37,9 +38,9 @@ class UserStatsResource
      *       echo $achievement['name'] . ': ' . $achievement['percent'] . '%';
      *   }
      */
-    public function getGlobalAchievementPercentages(int $appId): array
+    public function getGlobalAchievementPercentages(int $appId): object
     {
-        return $this->get('ISteamUserStats', 'GetGlobalAchievementPercentagesForApp', 2, [
+        return $this->get('ISteamUserStats', 'GetGlobalAchievementPercentagesForApp', SteamEndPoints::VERSION_2, [
             'gameid' => $appId,
         ]);
     }
@@ -63,7 +64,7 @@ class UserStatsResource
      *       echo $achievement['name'] . ': ' . ($achievement['achieved'] ? 'Unlocked' : 'Locked');
      *   }
      */
-    public function getPlayerAchievements(string $steamId, int $appId, ?string $language = null): array
+    public function getPlayerAchievements(string $steamId, int $appId, ?string $language = null): object
     {
         $params = [
             'steamid' => $steamId,
@@ -74,7 +75,7 @@ class UserStatsResource
             $params['l'] = $language;
         }
 
-        return $this->get('ISteamUserStats', 'GetPlayerAchievements', 1, $params);
+        return $this->get('ISteamUserStats', 'GetPlayerAchievements', SteamEndPoints::VERSION_1, $params);
     }
 
     /**
@@ -97,7 +98,7 @@ class UserStatsResource
      *       echo $stat['name'] . ': ' . $stat['value'];
      *   }
      */
-    public function getPlayerStats(string $steamId, int $appId, ?string $language = null): array
+    public function getPlayerStats(string $steamId, int $appId, ?string $language = null): object
     {
         $params = [
             'steamid' => $steamId,
@@ -108,6 +109,6 @@ class UserStatsResource
             $params['l'] = $language;
         }
 
-        return $this->get('ISteamUserStats', 'GetUserStatsForGame', 2, $params);
+        return $this->get('ISteamUserStats', 'GetUserStatsForGame', SteamEndPoints::VERSION_2, $params);
     }
 }
