@@ -123,6 +123,94 @@ foreach ($data['appnews']['newsitems'] as $article) {
 
 ---
 
+### 🛠️ WebAPI Utilities — `$steam->webAPIUtil()`
+
+```php
+// Get a list of all supported API interfaces and methods
+$data = $steam->webAPIUtil()->getSupportedAPIList();
+foreach ($data['apilist']['interfaces'] as $interface) {
+    echo $interface['name'] . "\n";
+}
+
+// Get server info (current time, etc.)
+$data = $steam->webAPIUtil()->getServerInfo();
+echo $data['servertime'];
+```
+
+---
+
+### 🖥️ Game Servers — `$steam->gameServer()`
+
+```php
+// Get SteamIDs associated with a given IP address
+$data = $steam->gameServer()->getServerSteamIDsByIP('192.168.1.100');
+
+// Get the current status of all game servers
+$data = $steam->gameServer()->getGameServersStatus();
+```
+
+---
+
+### 🏅 Leaderboards — `$steam->leaderboards()`
+
+```php
+// Get definitions of all leaderboards for a game
+$data = $steam->leaderboards()->getLeaderboardDefinitions(440);
+
+// Get entries from a specific leaderboard
+$data = $steam->leaderboards()->getLeaderboardEntries(
+    appId: 440,
+    leaderboardId: 12345,
+    start: 1,
+    end: 10,
+    steamId: '76561197960435530' // optional, to filter for a specific user
+);
+```
+
+---
+
+### 🔍 Matchmaking (Lobbies) — `$steam->matchmaking()`
+
+```php
+// Get a list of lobbies for a game
+$data = $steam->matchmaking()->getLobbyList(
+    appId: 440,
+    max: 10,
+    filter: 'gamedir:tf' // optional filter
+);
+
+// Get data for a specific lobby
+$data = $steam->matchmaking()->getLobbyData('123456789012345678');
+```
+
+---
+
+### 📦 Workshop (Published Files) — `$steam->publishedFile()`
+
+```php
+// Get details for one or more Workshop files
+$data = $steam->publishedFile()->getDetails([123456, 789012]);
+
+// Get subscriptions for a specific user
+$data = $steam->publishedFile()->getSubscriptions('76561197960435530');
+```
+
+---
+
+### 🔐 User Authentication — `$steam->userAuth()`
+
+```php
+// Authenticate a user using a Steam authentication ticket
+$data = $steam->userAuth()->authenticateUser(
+    steamId: '76561197960435530',
+    ticket: 'your_ticket_here',
+    sessionKey: 'optional_session_key', // base64 encoded
+    encrypted: 'optional_encrypted_data'
+);
+```
+
+---
+
 ## Error Handling
 
 All methods throw `SteamApiException` on failure (bad key, rate limit, network error, etc.):
@@ -152,7 +240,16 @@ src/
     ├── NewsResource.php         ← ISteamNews
     ├── UserResource.php         ← ISteamUser
     ├── PlayerResource.php       ← IPlayerService
-    └── UserStatsResource.php    ← ISteamUserStats
+    ├── UserStatsResource.php    ← ISteamUserStats
+    ├── AppResource.php          ← ISteamApps
+    ├── EconomyResource.php      ← ISteamEconomy
+    ├── StorageResource.php      ← ISteamRemoteStorage
+    ├── WebAPIUtilResource.php   ← ISteamWebAPIUtil
+    ├── GameServerResource.php   ← ISteamGameServer
+    ├── LeaderboardResource.php  ← ISteamLeaderboards
+    ├── MatchmakingResource.php  ← ISteamMatchmaking
+    ├── PublishedFileResource.php ← IPublishedFileService
+    └── UserAuthResource.php     ← ISteamUserAuth
 ```
 
 ## License

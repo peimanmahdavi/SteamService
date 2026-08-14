@@ -5,10 +5,16 @@ namespace PmZedx\SteamService;
 use PmZedx\SteamService\Exceptions\SteamApiException;
 use PmZedx\SteamService\Resources\AppResource;
 use PmZedx\SteamService\Resources\EconomyResource;
+use PmZedx\SteamService\Resources\GameServerResource;
+use PmZedx\SteamService\Resources\LeaderboardResource;
+use PmZedx\SteamService\Resources\MatchmakingResource;
 use PmZedx\SteamService\Resources\NewsResource;
 use PmZedx\SteamService\Resources\PlayerResource;
+use PmZedx\SteamService\Resources\PublishedFileResource;
+use PmZedx\SteamService\Resources\UserAuthResource;
 use PmZedx\SteamService\Resources\UserResource;
 use PmZedx\SteamService\Resources\UserStatsResource;
+use PmZedx\SteamService\Resources\WebAPIUtilResource;
 
 /**
  * SteamClient — the main entry point for the Steam Web API package.
@@ -125,5 +131,77 @@ class SteamClient
     public function economy()
     {
         return new EconomyResource($this->apiKey);
+    }
+
+    /**
+     * Access WebAPI utility methods (ISteamWebAPIUtil).
+     *
+     * Fetch supported API lists and server info.
+     *
+     * @see WebAPIUtilResource
+     */
+    public function webAPIUtil(): WebAPIUtilResource
+    {
+        return new WebAPIUtilResource($this->apiKey);
+    }
+
+    /**
+     * Access game server methods (ISteamGameServer).
+     *
+     * Fetch server status and SteamIDs by IP.
+     *
+     * @see GameServerResource
+     */
+    public function gameServer(): GameServerResource
+    {
+        return new GameServerResource($this->apiKey);
+    }
+
+    /**
+     * Access leaderboard methods (ISteamLeaderboards).
+     *
+     * Fetch leaderboard definitions and entries.
+     *
+     * @see LeaderboardResource
+     */
+    public function leaderboards(): LeaderboardResource
+    {
+        return new LeaderboardResource($this->apiKey);
+    }
+
+    /**
+     * Access matchmaking methods (ISteamMatchmaking).
+     *
+     * Fetch lobby lists and data.
+     *
+     * @see MatchmakingResource
+     */
+    public function matchmaking(): MatchmakingResource
+    {
+        return new MatchmakingResource($this->apiKey);
+    }
+
+    /**
+     * Access published file methods (IPublishedFileService).
+     *
+     * Fetch Workshop file details and subscriptions.
+     *
+     * @see PublishedFileResource
+     */
+    public function publishedFile(): PublishedFileResource
+    {
+        return new PublishedFileResource($this->apiKey);
+    }
+
+    /**
+     * Access user authentication methods (ISteamUserAuth).
+     *
+     * Authenticate users with Steam tickets.
+     *
+     * @see UserAuthResource
+     */
+    public function userAuth(): UserAuthResource
+    {
+        return new UserAuthResource($this->apiKey);
     }
 }
